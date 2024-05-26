@@ -2,12 +2,17 @@
 import styled from 'styled-components';
 import { Button } from './Button';
 import { ButtonWrapper } from './Counter';
+import { ChangeEvent } from 'react';
 type Props = {
-   
+   maxValue: number
+   startValue: number
+   changeMaxValue:(e:ChangeEvent<HTMLInputElement>) => void
 };
-export const SetCounter = ({}: Props) => {
+export const SetCounter = ({maxValue,startValue,changeMaxValue}: Props) => {
 
-
+    const changeMaxValueHandler = (e:ChangeEvent<HTMLInputElement>) => {
+        changeMaxValue(e)
+    }
 
 
     return (
@@ -15,11 +20,11 @@ export const SetCounter = ({}: Props) => {
             <ValueWrapper>
                 <Wrapper>
                     <Value>max value:</Value>
-                    <ValueInput   type="number" min='-100' max='100' step='1' />
+                    <ValueInput value={maxValue} onChange={changeMaxValueHandler} type="number" />
                 </Wrapper>
                 <Wrapper>
                     <Value>start value:</Value>
-                    <ValueInput  type="number" min='-100' max='100' step='1' />
+                    <ValueInput value={startValue} type="number"  />
                 </Wrapper>
             </ValueWrapper>
             <ButtonWrapper>

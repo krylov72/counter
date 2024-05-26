@@ -6,22 +6,32 @@ import { SetCounter } from './components/SetCounter';
 import styled from 'styled-components';
 
 function App() {
-
-  const [value, setValue] = useState<number>(0)
+  const [maxValue, setMaxValue] = useState<number>(0)
+  const [startValue, setStartValue] = useState<number>(0)
+  const [value, setValue] = useState<number>(maxValue)
+  
   const increaseCounter = () => {
     return value < 5 ? setValue(value + 1) : ''
   }
 
   const resetCounter = () => {
-    setValue(0)
+    setValue(maxValue)
   }
 
+  const changeMaxValue = (e:ChangeEvent<HTMLInputElement>) => {
+    setMaxValue(e.currentTarget.valueAsNumber)
+  }
+  //Todo
+  //Сделать логику (startValue)
+  //Сделать фильтрацию
 
+  console.log(maxValue);
+  
 
   return (
     <div className="App">
       <Wrapper>
-      <SetCounter />
+      <SetCounter  maxValue={maxValue} startValue={startValue} changeMaxValue={changeMaxValue}/>
       <Counter value={value} increaseCounter={increaseCounter} resetCounter = {resetCounter} />
       </Wrapper>
       
