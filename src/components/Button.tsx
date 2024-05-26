@@ -11,7 +11,7 @@ export const Button = ({ title, onClick,disabled }: Props) => {
     );
 };
 
-
+d
 const StyledBtn = styled.button<{$disabled:boolean}>`
     background-color: ${props=>props.$disabled?'#5a5a5add':'#05cef1dd'};
     cursor:${props=>props.$disabled?'none':'pointer'};
