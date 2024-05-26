@@ -5,16 +5,18 @@ type Props = {
     value: number
     increaseCounter: () => void
     resetCounter: () => void
+    maxValue:number
+    startValue:number
 };
-export const Counter = ({ value, increaseCounter, resetCounter}: Props) => {
+export const Counter = ({ value, increaseCounter, resetCounter,maxValue,startValue}: Props) => {
     return (
         <CounterStyled>
-            <CounterValue $max={value === 5 ? true : false}>
-                {value}
+            <CounterValue $max={value === maxValue ? true : false}>
+                {startValue?'no':value}
             </CounterValue>
             <ButtonWrapper>
-                <Button title='inc' onClick={increaseCounter} disabled={value === 5 ? true : false} />
-                <Button title='reset' onClick={resetCounter} disabled={value < 5 ? true : false} />
+                <Button title='inc' onClick={increaseCounter} disabled={value === maxValue ? true : false} />
+                <Button title='reset' onClick={resetCounter} disabled={value < maxValue ? true : false} />
             </ButtonWrapper>
         </CounterStyled>
     );

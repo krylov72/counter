@@ -7,13 +7,22 @@ type Props = {
    maxValue: number
    startValue: number
    changeMaxValue:(e:ChangeEvent<HTMLInputElement>) => void
+   changeStartValue:(e:ChangeEvent<HTMLInputElement>) => void
+   setValues: (maxValue:number,startValue:number) => void
 };
-export const SetCounter = ({maxValue,startValue,changeMaxValue}: Props) => {
+export const SetCounter = ({maxValue,startValue,changeMaxValue,changeStartValue,setValues}: Props) => {
 
     const changeMaxValueHandler = (e:ChangeEvent<HTMLInputElement>) => {
         changeMaxValue(e)
     }
 
+    const changeStartValueHandler = (e:ChangeEvent<HTMLInputElement>) => {
+        changeStartValue(e)
+    }
+
+    const setValuesHandler = () => {
+        setValues(maxValue,startValue)
+    }
 
     return (
         <SetCounterStyled>
@@ -24,11 +33,11 @@ export const SetCounter = ({maxValue,startValue,changeMaxValue}: Props) => {
                 </Wrapper>
                 <Wrapper>
                     <Value>start value:</Value>
-                    <ValueInput value={startValue} type="number"  />
+                    <ValueInput value={startValue} onChange={changeStartValueHandler} type="number"  />
                 </Wrapper>
             </ValueWrapper>
             <ButtonWrapper>
-            <Button title='set' onClick={() => {}}  disabled={false}/>
+            <Button title='set' onClick={setValuesHandler}  disabled={false}/>
             </ButtonWrapper>
         </SetCounterStyled>
     );
